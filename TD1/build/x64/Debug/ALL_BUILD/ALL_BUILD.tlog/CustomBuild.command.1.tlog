@@ -1,0 +1,10 @@
+^C:\TRAVAIL\IMAC\PROGRAMMATION-C++\S2\TD1\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Travail/IMAC/Programmation-C++/S2/TD1 -BC:/Travail/IMAC/Programmation-C++/S2/TD1/build --check-stamp-file C:/Travail/IMAC/Programmation-C++/S2/TD1/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
