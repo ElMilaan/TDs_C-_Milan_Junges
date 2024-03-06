@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Travail\IMAC\Programmation-C++\S2\TD1\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Travail\IMAC\Programmation-C++\S2\TDs_C-_Milan_Junges\TD1\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Travail\IMAC\Programmation-C++\S2\TD1\bin\Debug\main.exe</FullPath>
+      <FullPath>C:\Travail\IMAC\Programmation-C++\S2\TDs_C-_Milan_Junges\TD1\bin\Debug\main.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

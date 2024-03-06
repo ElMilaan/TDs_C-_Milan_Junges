@@ -1,4 +1,4 @@
-# Install script for directory: C:/Travail/IMAC/Programmation-C++/S2/TD1
+# Install script for directory: C:/Travail/IMAC/Programmation-C++/S2/TDs_C-_Milan_Junges/TD1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Travail/IMAC/Programmation-C++/S2/TD1/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Travail/IMAC/Programmation-C++/S2/TDs_C-_Milan_Junges/TD1/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
