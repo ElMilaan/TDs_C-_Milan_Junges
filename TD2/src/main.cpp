@@ -11,9 +11,9 @@ int main(int argc, char const *argv[])
 
     cout << "Vecteur de base : " << vec;
 
-    bubble_sort(vec);
+    cout << "Vecteur trie (bulle) : " << bubble_sort(vec);
 
-    cout << "Vecteur trie (bulle) : " << vec;
+    cout << "Vecteur trie (selection) : " << selection_sort(vec);
 
     return 0;
 }

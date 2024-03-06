@@ -24,7 +24,7 @@ bool is_sorted(vector<int> const &vec)
     return is_sorted(vec.begin(), vec.end());
 }
 
-void bubble_sort(vector<int> &vec)
+vector<int> bubble_sort(vector<int> vec)
 {
     int nbIt = vec.size() - 1;
     for (int i = 0; i < vec.size(); i++)
@@ -40,6 +40,32 @@ void bubble_sort(vector<int> &vec)
         }
         nbIt--;
     }
+    return vec;
 }
 
-void selection_sort(vector<int> &vec) {}
+vector<int> selection_sort(vector<int> vec)
+{
+    int max{};
+    int index{};
+    int nbIt = vec.size();
+    for (int i = 0; i < vec.size(); i++)
+    {
+        max = vec[0];
+        index = 0;
+        for (int j = 0; j < nbIt; j++)
+        {
+            if (vec[j] > max)
+            {
+                max = vec[j];
+                index = j;
+            }
+            if (j == nbIt - 1)
+            {
+                vec[index] = vec[j];
+                vec[j] = max;
+            }
+        }
+        nbIt--;
+    }
+    return vec;
+}
