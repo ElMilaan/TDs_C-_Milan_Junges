@@ -1,30 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include "functions.hpp"
 
 using namespace std;
 
-ostream &operator<<(ostream &os, const vector<int> &vec)
-{
-    if (!vec.empty())
-    {
-        os << vec[0];
-        for (size_t i = 1; i < vec.size(); ++i)
-        {
-            os << " - " << vec[i];
-        }
-    }
-    os << endl;
-    return os;
-}
+/* *********** TRI BULLE ************* */
 
-bool is_sorted(vector<int> const &vec)
-{
-    return is_sorted(vec.begin(), vec.end());
-}
-
-vector<int> bubble_sort(vector<int> vec)
+void bubble_sort(vector<int> &vec)
 {
     int nbIt = vec.size() - 1;
     for (int i = 0; i < vec.size(); i++)
@@ -40,10 +21,11 @@ vector<int> bubble_sort(vector<int> vec)
         }
         nbIt--;
     }
-    return vec;
 }
 
-vector<int> selection_sort(vector<int> vec)
+/* *********** TRI SELECTION ************* */
+
+void selection_sort(vector<int> &vec)
 {
     int max{};
     int index{};
@@ -67,5 +49,4 @@ vector<int> selection_sort(vector<int> vec)
         }
         nbIt--;
     }
-    return vec;
 }
