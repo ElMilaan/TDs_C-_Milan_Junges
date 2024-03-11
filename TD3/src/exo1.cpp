@@ -6,7 +6,7 @@
 #include <cctype>
 #include <stack>
 
-#include "exo1.hpp"
+#include "global.hpp"
 using namespace std;
 
 vector<string> split_string(string const &str)
