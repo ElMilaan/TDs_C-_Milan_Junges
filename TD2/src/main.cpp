@@ -1,9 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "exo1.hpp"
-#include "exo2.hpp"
-#include "exo4.hpp"
+
+#include "global.hpp"
 #include "utils.hpp"
 #include "ScopedTimer.hpp"
 

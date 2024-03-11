@@ -6,7 +6,7 @@
 #include <math.h>
 
 #include "utils.hpp"
-#include "exo2.hpp"
+#include "global.hpp"
 
 using namespace std;
 
