@@ -41,13 +41,6 @@ bool is_sorted(vector<float> const &vec)
     return is_sorted(vec.begin(), vec.end());
 }
 
-void swap_two_values(vector<float> &vec, size_t const &index1, size_t const &index2)
-{
-    float temp = vec[index1];
-    vec[index1] = vec[index2];
-    vec[index2] = temp;
-}
-
 void display_exo(int exNumber)
 {
     cout << endl

@@ -12,94 +12,99 @@ using namespace std;
 
 /* *********** TRI RAPIDE ************* */
 
-int right_part(vector<float> &vec, size_t &indexPivot)
+size_t quick_sort_partition(vector<float> &vec, size_t const &min, size_t const &max)
 {
-    if (indexPivot == vec.size() - 1)
-    {
-        return int(vec.size() - 1);
-    }
-    return int(vec.size() - 1 - indexPivot);
-}
+    float pivot{vec[max]};
+    size_t min_index{min - 1};
 
-int quick_sort_partition(vector<float> &vec, int const &min, int const &max)
-{
-    int pivot = vec[max];
-    int min_index = min - 1;
-
-    for (int i = min; i < max; i++)
+    for (size_t i{min}; i < max; i++)
     {
         if (vec[i] < pivot)
         {
             min_index++;
-            swap_two_values(vec, min_index, i);
+            swap(vec[min_index], vec[i]);
         }
     }
 
-    swap_two_values(vec, min_index + 1, max);
+    swap(vec[min_index + 1], vec[max]);
     return min_index + 1;
 }
 
-void quick_sort(vector<float> &vec, int const &min, int const &max)
+void quick_sort(vector<float> &vec)
+{
+    quick_sort(vec, 0, vec.size() - 1);
+}
+
+void quick_sort(vector<float> &vec, size_t const &min, size_t const &max)
 {
     if (min < max)
     {
-        int indexPivot = quick_sort_partition(vec, min, max);
+        size_t indexPivot = quick_sort_partition(vec, min, max);
 
         // Left Part
-        int newMax = indexPivot - 1;
+        size_t newMax = indexPivot - 1;
         quick_sort(vec, min, newMax);
 
         // Right Part
-        int newMin = indexPivot + 1;
+        size_t newMin = indexPivot + 1;
         quick_sort(vec, newMin, max);
     }
 }
 
 /* *********** TRI FUSION ************* */
 
-void merge_sort(vector<float> &vec, int const &start, int const &end)
+void merge_sort_merge(vector<float> &vec, size_t const left, size_t const right, size_t const middle)
 {
-    if (start < end)
-    {
-        int middle = (start + end) / 2;
-        merge_sort(vec, start, middle);
-        merge_sort(vec, middle + 1, end);
-        merge_sort_merge(vec, start, end, middle);
-    }
-}
+    size_t const left_size{middle - left + 1};
+    size_t const right_size{right - middle};
+    vector<float> left_vec(vec.begin() + left, vec.begin() + middle + 1);
+    vector<float> right_vec(vec.begin() + middle + 1, vec.begin() + right + 1);
 
-void merge_sort_merge(vector<float> &vec, int const &start, int const &end, int const &middle)
-{
-    vector<float> finalVec(vec.size());
-    int leftIndex = start;
-    int rightIndex = middle + 1;
-    int indexToAdd = start;
+    size_t left_index{0};
+    size_t right_index{0};
 
-    while (leftIndex <= middle && rightIndex <= end)
+    size_t index{left};
+
+    while (left_index < left_size && right_index < right_size)
     {
-        if (vec[leftIndex] <= vec[rightIndex])
+        if (left_vec[left_index] < right_vec[right_index])
         {
-            finalVec[indexToAdd] = vec[leftIndex];
-            leftIndex++;
+            vec[index] = left_vec[left_index];
+            left_index++;
         }
         else
         {
-            finalVec[indexToAdd] = vec[rightIndex];
-            rightIndex++;
+            vec[index] = right_vec[right_index];
+            right_index++;
         }
-        indexToAdd++;
+        index++;
     }
-    while (leftIndex < middle)
+
+    while (left_index < left_vec.size() - 1)
     {
-        finalVec[indexToAdd] = vec[leftIndex];
-        leftIndex++;
-        indexToAdd++;
+        vec[index] = left_vec[left_index];
+        left_index++;
+        index++;
     }
-    while (rightIndex <= end)
+    while (right_index < right_vec.size() - 1)
     {
-        finalVec[indexToAdd] = vec[rightIndex];
-        rightIndex++;
-        indexToAdd++;
+        vec[index] = right_vec[right_index];
+        right_index++;
+        index++;
     }
-    vec = finalVec;
+}
+void merge_sort(vector<float> &vec)
+{
+    merge_sort(vec, 0, vec.size() - 1);
+}
+
+void merge_sort(vector<float> &vec, size_t const left, size_t const right)
+{
+    if (left < right)
+    {
+        size_t middle = (right + left) / 2;
+        merge_sort(vec, left, middle);
+        merge_sort(vec, middle + 1, right);
+        merge_sort_merge(vec, left, right, middle);
+    }
 }

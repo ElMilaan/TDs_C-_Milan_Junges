@@ -4,14 +4,14 @@
 
 using namespace std;
 
-int search(vector<int> &vec, int &value, int const &left, int const &right)
+size_t search(vector<int> &vec, int &value, size_t const &left, size_t const &right)
 {
     if (left > right)
     {
         return -1;
     }
 
-    int middle = (left + right) / 2;
+    size_t middle = (left + right) / 2;
 
     if (vec[middle] == value)
     {

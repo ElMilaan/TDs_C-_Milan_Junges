@@ -42,77 +42,80 @@ int main(int argc, char const *argv[])
      cout << endl
           << "Vecteur de base : " << vecF << endl;
 
-     quick_sort(vecF, 0, vecF.size() - 1);
+     quick_sort(vecF);
      cout << "Tri Rapide : " << vecF;
      (is_sorted(vecF)) ? cout << " = Vecteur trie" << endl : cout << " = Vecteur non trie";
 
-     // vecF = generate_random_vectorFloat(10, 100);
+     vecF = generate_random_vectorFloat(10, 100);
 
-     // cout << endl
-     //      << "Vecteur de base : " << vecF << endl;
+     cout << endl
+          << "Vecteur de base : " << vecF << endl;
 
-     // merge_sort(vecF, 0, vecF.size() - 1);
-     // cout << "Tri Fusion : " << vecF;
-     // (is_sorted(vecF)) ? cout << " = Vecteur trie" << endl : cout << " = Vecteur non trie";
+     merge_sort(vecF);
+     cout << "Tri Fusion : " << vecF;
+     (is_sorted(vecF)) ? cout << " = Vecteur trie" << endl : cout << " = Vecteur non trie";
 
      // ------------ TEST EXERCICE 3 -------------
 
      display_exo(3);
 
-     vector<int> vecIntTest{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-     vector<float> vecFloatTest{10.8, 3.5, 2.9, 2.7, 2.1, 1.4, 1.32, 1.11, 1.01, 0.3};
+     vector<int> vecIntTest{generate_random_vectorInt(10, 100)};
+     vector<float> vecFloatTest{generate_random_vectorFloat(10, 100)};
      {
           ScopedTimer timer("Sort - Standard Library");
           sort(vecIntTest.begin(), vecIntTest.end());
      }
 
-     vecIntTest = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+     vecIntTest = generate_random_vectorInt(10, 100);
 
      {
           ScopedTimer timer("Sort - Bubble Sort");
           bubble_sort(vecIntTest);
      }
 
-     vecIntTest = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+     vecIntTest = generate_random_vectorInt(10, 100);
 
      {
           ScopedTimer timer("Sort - Selection Sort");
-          selection_sort(vecI);
+          selection_sort(vecIntTest);
      }
 
      {
           ScopedTimer timer("Sort - Tri Rapide");
-          sort(vecFloatTest.begin(), vecFloatTest.end());
+          quick_sort(vecFloatTest);
      }
-     // {
-     //      ScopedTimer timer("Sort - Tri Fusion");
-     //      sort(vecF.begin(), vecF.end());
-     // }
+
+     vecFloatTest = generate_random_vectorFloat(10, 1000);
+
+     {
+          ScopedTimer timer("Sort - Tri Fusion");
+          merge_sort(vecFloatTest);
+     }
 
      cout << endl
           << "Que constatez-vous ? - On voit que les differents algorithmes ont un temps d'execution different" << endl
-          << "Que pouvez-vous dire ? - Certains algorithmes de tri sont plus efficaces que d'autres (bubble est le plus efficace ici)" << endl
+          << "Que pouvez-vous dire ? - Certains algorithmes de tri sont plus efficaces que d'autres" << endl
           << "Cependant, avec un bien plus grand jeu de donnees dans nos vecteurs, les algorithmes de tri recursifs seront plus efficaces";
 
      // ------------ TEST EXERCICE 4 -------------
 
      display_exo(4);
 
-     // Liste de tous les tableaux avec comme dernière valeur la valeur recherchée
-     Paire tab[]{
+     // Liste de tous les tableaux associé à la valeur recherchée
+     vector<pair<int, vector<int>>> tab{
          {8, {1, 2, 2, 3, 4, 8, 12}},
          {15, {1, 2, 3, 3, 6, 14, 12, 15}},
          {16, {2, 2, 3, 4, 5, 8, 12, 15, 16}},
          {6, {5, 6, 7, 8, 9, 10, 11, 12, 13}},
          {10, {1, 2, 3, 4, 5, 6, 7, 8, 9}}};
 
-     int res{};
+     size_t res{};
 
      for (int i = 0; i < 5; i++)
      {
-          cout << "- Vecteur : " << tab[i].vec << " - Valeur recherchee : " << tab[i].searchValue;
+          cout << "- Vecteur : " << tab[i].second << " - Valeur recherchee : " << tab[i].first;
 
-          res = search(tab[i].vec, tab[i].searchValue, 0, tab[i].vec.size() - 1);
+          res = search(tab[i].second, tab[i].first, 0, tab[i].second.size() - 1);
 
           (res != -1) ? cout << endl
                              << "Valeur trouvee ! Son indice est " << res << endl
