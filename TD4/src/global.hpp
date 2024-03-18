@@ -10,3 +10,4 @@ void find_value(vector<int> &vec, int const &value);
 // EXERCICE 2
 __int64 nb_letters_fst_word(string const &str);
 vector<string> split_string(string const &str);
+bool is_palindrome(string const &str);
