@@ -125,5 +125,18 @@ int main(int argc, char const *argv[])
                              << endl;
      }
 
+     // ------------ TEST COUNTING_SORT -------------
+
+     cout << "--------------- COUNTING SORT -----------------" << endl
+          << endl;
+
+     vector<int> vec{9, 7, 3, 4, 3, 6, 9, 1, 7, 9, 9, 3};
+
+     cout << "Le vecteur de base : " << vec << endl;
+
+     counting_sort(vec, 9);
+
+     cout << "Le vecteur trie : " << vec << endl;
+
      return 0;
 }

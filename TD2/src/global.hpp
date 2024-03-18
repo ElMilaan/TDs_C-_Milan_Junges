@@ -24,3 +24,6 @@ struct Paire
 };
 
 size_t search(vector<int> &vec, int &value, size_t const &left, size_t const &right);
+
+// COUNTING SORT
+void counting_sort(vector<int> &vec, int const max);
