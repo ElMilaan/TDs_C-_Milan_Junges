@@ -41,9 +41,7 @@ int main(int argc, char **argv)
 
      cout << "Ecris une phrase : " << endl
           << "> ";
-     // getline(cin, str);
-
-     str = "je suis joie";
+     getline(cin, str);
 
      __int64 nbLettersFstWord = nb_letters_fst_word(str);
      cout << "Le premier mot de la phrase est un mot de " << nbLettersFstWord << " lettres !" << endl;
@@ -62,4 +60,16 @@ int main(int argc, char **argv)
      {
           is_palindrome(str) ? cout << "- " << str << " est un palindrome" << endl : cout << "- " << str << " n'est pas un palindrome" << endl;
      }
+
+     /* ------------------------------------ ALLER PLUS LOIN ------------------------------------ */
+
+     cout << endl
+          << "====================== ALLER PLUS LOIN ========================" << endl
+          << endl;
+
+     vector<int> vecInt{generate_random_vector(10, 20)};
+     cout << "Vecteur de base : " << vecInt << endl
+          << endl;
+     cout << "Somme des carres de ce vecteur : " << sum_squared(vecInt) << endl;
+     cout << "Produit des nombres paires de ce vecteur : " << multiply_even(vecInt) << endl;
 }
