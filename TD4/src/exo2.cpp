@@ -12,8 +12,8 @@ auto const is_space = [](char letter)
 
 __int64 nb_letters_fst_word(string const &str)
 {
-    auto size_word = find_if(str.begin(), str.end(), is_space);
-    return distance(str.begin(), size_word);
+    auto first_word = find_if(str.begin(), str.end(), is_space);
+    return distance(str.begin(), first_word);
 }
 
 void add_to_iterator(string::const_iterator &it, string::const_iterator &it_end)
