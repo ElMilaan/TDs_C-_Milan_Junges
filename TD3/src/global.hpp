@@ -20,6 +20,7 @@ enum class Operator
     SUB,
     MUL,
     DIV,
+    POW,
     OPEN_PAREN,
     CLOSE_PAREN
 };
@@ -42,3 +43,8 @@ vector<Token> tokenize(vector<string> const &words);
 
 void operation(stack<float> &stk, Operator &op);
 float npi_evaluate(vector<Token> const &tokens);
+
+// EXERCICE 3
+size_t operator_precedence(Operator const op);
+vector<Token> infix_to_npi_tokens(string const &expression);
+void display_expression(vector<Token> &vec);

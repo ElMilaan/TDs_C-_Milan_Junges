@@ -47,6 +47,9 @@ vector<Token> tokenize(vector<string> const &words)
             case '/':
                 vec.push_back(make_token(Operator::DIV));
                 break;
+            case '^':
+                vec.push_back(make_token(Operator::POW));
+                break;
             case '(':
                 vec.push_back(make_token(Operator::OPEN_PAREN));
                 break;
@@ -80,6 +83,9 @@ void operation(stack<float> &stk, Operator &op)
         break;
     case Operator::DIV:
         res = f2 / f1;
+        break;
+    case Operator::POW:
+        res = pow(f2, f1);
         break;
     }
     stk.push(res);
