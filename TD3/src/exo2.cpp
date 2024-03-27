@@ -18,7 +18,7 @@ Token make_token(float value)
 
 Token make_token(Operator op)
 {
-    Token tkn{TokenType::OPERATOR, NULL, op};
+    Token tkn{TokenType::OPERATOR, 0, op};
     return tkn;
 }
 
@@ -70,16 +70,16 @@ void operation(stack<float> &stk, Operator &op)
     switch (op)
     {
     case Operator::ADD:
-        res = f1 + f2;
+        res = f2 + f1;
         break;
     case Operator::SUB:
-        res = f1 - f2;
+        res = f2 - f1;
         break;
     case Operator::MUL:
-        res = f1 * f2;
+        res = f2 * f1;
         break;
     case Operator::DIV:
-        res = f1 / f2;
+        res = f2 / f1;
         break;
     }
     stk.push(res);

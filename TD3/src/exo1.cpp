@@ -38,16 +38,16 @@ void operation(stack<float> &stk, char const &op)
     switch (op)
     {
     case '+':
-        res = f1 + f2;
+        res = f2 + f1;
         break;
     case '-':
-        res = f1 - f2;
+        res = f2 - f1;
         break;
     case '*':
-        res = f1 * f2;
+        res = f2 * f1;
         break;
     case '/':
-        res = f1 / f2;
+        res = f2 / f1;
         break;
     }
     stk.push(res);
