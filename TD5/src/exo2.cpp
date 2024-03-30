@@ -3,6 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include <unordered_map>
+#include <numeric>
 
 using namespace std;
 
@@ -36,23 +37,33 @@ vector<pair<string, float>> get_robots_fix(size_t size)
     return robots_fix;
 }
 
-unordered_map<string, vector<float>> fixList(vector<pair<string, float>> &vec)
+unordered_map<string, vector<float>> robots_fixes_map(vector<pair<string, float>> const &robots_fixes)
 {
     unordered_map<string, vector<float>> result{};
-    string name = vec[0].first;
-    vector<float> fix{};
-    for (pair p : vec)
+    for (pair p : robots_fixes)
     {
-        if (p.first == name)
+        // si le nom a déjà été rencontré
+        if (result.find(p.first) != result.end())
         {
-            fix.push_back(p.second);
+            result[p.first].push_back(p.second);
         }
         else
         {
-            result.insert({name, fix});
-            name = p.first;
-            fix = {};
+            result.insert({p.first, {p.second}});
         }
     }
     return result;
+}
+
+float float_sum(vector<float> &vec)
+{
+    return float(accumulate(vec.begin(), vec.end(), 0));
+}
+
+void display_sum_fixes(unordered_map<string, vector<float>> &map)
+{
+    for (pair p : map)
+    {
+        cout << p.first << " , " << float_sum(p.second) << endl;
+    }
 }

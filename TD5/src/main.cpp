@@ -10,30 +10,29 @@ static const size_t MAX = 2048;
 
 int main(int argc, char **argv)
 {
-    // ---------------------------- EXERCICE 1 -----------------------------
-    cout << endl
-         << "============= EXERCICE 1 ==============" << endl
-         << endl;
+     // ---------------------------- EXERCICE 1 -----------------------------
+     cout << endl
+          << "============= EXERCICE 1 ==============" << endl
+          << endl;
 
-    string sentence = "Jhd hde hjs";
+     string sentence = "Jhd hde hjs";
 
-    cout << "somme ASCII : " << folding_string_hash(sentence, MAX) << endl;
-    cout << "somme ASCII ordonnee : " << folding_string_ordered_hash(sentence, MAX) << endl;
-    cout << "Polynomial Rolling Hash : " << polynomial_rolling_hash(sentence, 21, MAX) << endl;
+     cout << "somme ASCII : " << folding_string_hash(sentence, MAX) << endl;
+     cout << "somme ASCII ordonnee : " << folding_string_ordered_hash(sentence, MAX) << endl;
+     cout << "Polynomial Rolling Hash : " << polynomial_rolling_hash(sentence, 21, MAX) << endl;
 
-    // ---------------------------- EXERCICE 2 -----------------------------
-    cout << endl
-         << "============= EXERCICE 2 ==============" << endl
-         << endl;
+     // ---------------------------- EXERCICE 2 -----------------------------
+     cout << endl
+          << "============= EXERCICE 2 ==============" << endl
+          << endl;
 
-    auto robots{get_robots_fix(15)};
+     vector<pair<string, float>> robots{get_robots_fix(50)};
 
-    for (pair p : robots)
-    {
-        cout << "( " << p.first << " , " << p.second << " )" << endl;
-    }
+     unordered_map<string, vector<float>> robots_map{robots_fixes_map(robots)};
 
-    unordered_map<string, vector<float>> robots_map{fixList(robots)};
+     cout << robots_map << endl;
 
-    cout << robots_map << endl;
+     cout << "Liste des robots avec la sommes de leurs reparations : " << endl
+          << endl;
+     display_sum_fixes(robots_map);
 }
