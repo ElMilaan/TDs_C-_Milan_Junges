@@ -119,17 +119,18 @@ void add_operator(vector<Token> &result, stack<Token> &stk, char const &c)
 
 vector<Token> infix_to_npi_tokens(string const &expression)
 {
+    vector<string> vec{split_string(expression)};
     stack<Token> operatorStk{};
     vector<Token> result{};
-    for (char c : expression)
+    for (string str : vec)
     {
-        if (isdigit(c))
+        if (is_floating(str))
         {
-            result.push_back(make_token(float(c - '0')));
+            result.push_back(make_token(stof(str)));
         }
-        else if (c != ' ')
+        else if (str[0] != ' ')
         {
-            add_operator(result, operatorStk, c);
+            add_operator(result, operatorStk, str[0]);
         }
     }
     while (!operatorStk.empty())
