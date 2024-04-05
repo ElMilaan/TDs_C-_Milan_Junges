@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include "global.hpp"
 
 using namespace std;
 
@@ -57,6 +58,21 @@ ostream &operator<<(ostream &os, const unordered_map<string, vector<float>> robo
     for (pair p : robots)
     {
         os << "( " << p.first << " , " << p.second << " )" << endl;
+    }
+    return os;
+}
+
+ostream &operator<<(ostream &os, Card c)
+{
+    os << card_name(c) << " : " << c.hash();
+    return os;
+}
+
+ostream &operator<<(ostream &os, unordered_map<Card, int> card_map)
+{
+    for (pair p : card_map)
+    {
+        os << p.first << " : " << p.second << endl;
     }
     return os;
 }

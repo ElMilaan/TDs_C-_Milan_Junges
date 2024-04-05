@@ -6,11 +6,13 @@
 #include "global.hpp"
 
 using namespace std;
+
 static const size_t MAX = 2048;
 
 int main(int argc, char **argv)
 {
      // ---------------------------- EXERCICE 1 -----------------------------
+
      cout << endl
           << "============= EXERCICE 1 ==============" << endl
           << endl;
@@ -22,6 +24,7 @@ int main(int argc, char **argv)
      cout << "Polynomial Rolling Hash : " << polynomial_rolling_hash(sentence, 21, MAX) << endl;
 
      // ---------------------------- EXERCICE 2 -----------------------------
+
      cout << endl
           << "============= EXERCICE 2 ==============" << endl
           << endl;
@@ -34,5 +37,17 @@ int main(int argc, char **argv)
 
      cout << "Liste des robots avec la sommes de leurs reparations : " << endl
           << endl;
-     display_sum_fixes(robots_map);
+     get_robots_fix(robots_map);
+
+     // ---------------------------- EXERCICE 3 -----------------------------
+
+     cout << endl
+          << "============= EXERCICE 3 ==============" << endl
+          << endl;
+
+     vector<Card> cards = get_cards(100);
+
+     unordered_map<Card, int> cards_map{get_card_map(cards)};
+
+     cout << cards_map;
 }

@@ -4,10 +4,11 @@
 #include <cstdlib>
 #include <unordered_map>
 #include <numeric>
+#include "global.hpp"
 
 using namespace std;
 
-std::string random_name(size_t size)
+string random_name(size_t size)
 {
     string name{""};
     // Optimisation pour que la chaîne de caractère ne réalloue pas de la mémoire à chaque caractère ajouté
@@ -60,7 +61,7 @@ float float_sum(vector<float> &vec)
     return float(accumulate(vec.begin(), vec.end(), 0));
 }
 
-void display_sum_fixes(unordered_map<string, vector<float>> &map)
+void get_robots_fix(unordered_map<string, vector<float>> &map)
 {
     for (pair p : map)
     {
