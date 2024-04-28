@@ -32,19 +32,24 @@ int main(int argc, char **argv)
 
      /* ====================== CONSTRUCTION DE DEUX ARBRES ===================== */
 
-     Node a{20};
-     a.insert(40);
-     a.insert(10);
-     a.left->insert(15);
-     a.left->insert(5);
-     a.right->insert(50);
-     a.right->insert(30);
-     a.right->right->insert(36);
+     Node *a{create_node(20)};
+     a->insert(40);
+     a->insert(10);
+     a->left->insert(15);
+     a->left->insert(5);
+     a->right->insert(50);
+     a->right->insert(30);
+     a->right->right->insert(36);
 
-     Node b{5};
-     b.insert(2);
-     b.insert(10);
-     b.left->insert(20);
+     Node *b{create_node(5)};
+     b->insert(2);
+     b->insert(10);
+     b->left->insert(20);
+
+     // remove(a, 5);
+     // cout << "Arbre 1 apres suppression : " << endl
+     //      << endl;
+     // pretty_print_left_right(*a);
 
      /* ======================================================================== */
 
@@ -52,74 +57,80 @@ int main(int argc, char **argv)
      {
      case 1:
           cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(a);
+          pretty_print_left_right(*a);
 
           cout << endl
                << "Arbre 2 : " << endl;
-          pretty_print_left_right(b);
+          pretty_print_left_right(*b);
           break;
 
      case 2:
           cout << "Feuilles de l'arbre 1 : ";
-          a.leaves();
+          a->leaves();
           cout << endl;
           cout << "Feuilles de l'arbre 2 : ";
-          b.leaves();
+          b->leaves();
           cout << endl;
           break;
 
      case 3:
-          cout << "Hauteur de l'arbre 1 : " << a.height() << endl;
-          cout << "Hauteur de l'arbre 2 : " << b.height() << endl;
+          cout << "Hauteur de l'arbre 1 : " << a->height() << endl;
+          cout << "Hauteur de l'arbre 2 : " << b->height() << endl;
           break;
 
      case 4:
           cout << "Arbre 2 avant suppression : " << endl
                << endl;
-          pretty_print_left_right(b);
-          b.delete_childs();
+          pretty_print_left_right(*b);
+          b->delete_childs();
           cout << endl
                << "Arbre 2 apres suppression : " << endl
                << endl;
-          pretty_print_left_right(b);
+          pretty_print_left_right(*b);
           break;
 
      case 5:
           cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(a);
+          pretty_print_left_right(*a);
           cout << endl
                << "Parcours infixe de l'arbre 1 : ";
-          a.display_infixe();
+          a->display_infixe();
           break;
 
      case 6:
           cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(a);
+          pretty_print_left_right(*a);
           cout << endl
-               << "Parcours prefixe de l'arbre 1 : " << a.prefixe();
+               << "Parcours prefixe de l'arbre 1 : " << a->prefixe();
           break;
 
      case 7:
           cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(a);
+          pretty_print_left_right(*a);
           cout << endl
-               << "Parcours postfixe (recursif) de l'arbre 1 : " << a.postfixe();
+               << "Parcours postfixe (recursif) de l'arbre 1 : " << a->postfixe();
           break;
 
      case 8:
           cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(a);
+          pretty_print_left_right(*a);
           cout << endl
                << "Valeur du noeud le plus a gauche : " << most_left(a)->value;
           break;
 
      case 9:
+          cout << "Arbre 1 : " << endl;
+          pretty_print_left_right(*a);
           int value_to_delete{};
-          cout << "Choisissez une valeur a supprimer de l'arbre : " << endl
+          cout << endl
+               << "Choisissez une valeur a supprimer de l'arbre : " << endl
                << "> ";
           cin >> value_to_delete;
-          // remove(a, value_to_delete);
-          break;
+          bool success = remove(a, value_to_delete);
+          cout << endl
+               << success << "Arbre 1 apres suppression : " << endl
+               << endl;
+          pretty_print_left_right(*a);
 
           // case 10:
           //      break;

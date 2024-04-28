@@ -145,6 +145,19 @@ vector<int> Node::postfixe()
     return vec;
 }
 
+int Node::has_one_child()
+{
+    if (left != nullptr && right == nullptr)
+    {
+        return 1;
+    }
+    else if (left != nullptr && right == nullptr)
+    {
+        return 2;
+    }
+    return 0;
+}
+
 Node *&most_left(Node *&node)
 {
     if (node->left != nullptr)
@@ -154,13 +167,89 @@ Node *&most_left(Node *&node)
     return node;
 }
 
-Node *&most_left(Node &node)
+void remove_with_one_children(Node *&node)
 {
-    return most_left(node.left);
+    int child = node->has_one_child();
+    switch (child)
+    {
+    case 1:
+        node->value = node->left->value;
+        delete node->left;
+        node->left = nullptr;
+        break;
+
+    case 2:
+        node->value = node->right->value;
+        delete node->right;
+        node->right = nullptr;
+        break;
+    }
 }
 
-// A FAIRE
+void remove_with_two_children(Node *&node, int &smallest)
+{
+    node->value = node->left->value;
+    if (node->left->value != smallest)
+    {
+        if (node->left->is_leaf())
+        {
+            delete node;
+            node = nullptr;
+        }
+        else if (node->left->has_one_child())
+        {
+            remove_with_one_children(node->left);
+        }
+        else
+        {
+            remove_with_two_children(node->left, smallest);
+        }
+    }
+    else
+    {
+        delete node->left;
+        node->left = nullptr;
+    }
+}
 
-// bool remove(Node *&node, int value)
-// {
-// }
+bool remove(Node *&node, int value)
+{
+    if (node == nullptr)
+    {
+        return false;
+    }
+    else if (value < node->value)
+    {
+        remove(node->left, value);
+    }
+    else if (value > node->value)
+    {
+        remove(node->right, value);
+    }
+    else
+    {
+        return remove(node);
+    }
+}
+
+bool remove(Node *&node)
+{
+    if (node->is_leaf())
+    {
+        delete node;
+        node = nullptr;
+        return true;
+    }
+    else if (node->has_one_child() != 0)
+    {
+        remove_with_one_children(node);
+        return true;
+    }
+    else
+    {
+        int smallest = most_left(node)->value;
+        remove_with_two_children(node, smallest);
+        return true;
+    }
+    return true;
+}

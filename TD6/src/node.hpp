@@ -19,6 +19,7 @@ struct Node
     vector<int> prefixe();
     void postfixe(vector<int> &vec);
     vector<int> postfixe();
+    int has_one_child(); // return 0 si n'a pas un seul enfant, 1 s'il n'a qu'un fils gauche, 2 s'il n'a qu'un fils droit
 };
 
 // EXERCICE 1
@@ -28,8 +29,8 @@ void pretty_print_left_right(Node const &node);
 
 Node *create_node(int value);
 Node *&most_left(Node *&node);
-Node *&most_left(Node &node);
 
-// A FAIRE
-
-// bool remove(Node *&node, int value);
+void remove_with_two_children(Node *&node, int &smallest);
+void remove_with_one_children(Node *&node);
+bool remove(Node *&node, int value);
+bool remove(Node *&node);
