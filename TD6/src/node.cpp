@@ -48,7 +48,14 @@ void Node::leaves() const
 
 void Node::insert(int val)
 {
-    (val < value) ? left = create_node(val) : right = create_node(val);
+    if (val <= value)
+    {
+        (left == nullptr) ? left = create_node(val) : left->insert(val);
+    }
+    else
+    {
+        (right == nullptr) ? right = create_node(val) : right->insert(val);
+    }
 }
 
 int Node::height() const
@@ -252,4 +259,58 @@ bool remove(Node *&node)
         return true;
     }
     return true;
+}
+
+void delete_tree(Node *node)
+{
+    if (node == nullptr)
+        return;
+
+    delete_tree(node->left);
+    delete_tree(node->right);
+
+    if (node->left != nullptr)
+    {
+        delete node->left;
+        node->left = nullptr;
+    }
+    if (node->right != nullptr)
+    {
+        delete node->right;
+        node->right = nullptr;
+    }
+}
+
+int Node::max()
+{
+    if (this == nullptr)
+        return INT_MIN;
+
+    int max = this->value;
+    int lMax = left->max();
+    int rMax = right->max();
+
+    if (lMax > max)
+        max = lMax;
+    if (rMax > max)
+        max = rMax;
+
+    return max;
+}
+
+int Node::min()
+{
+    if (this == nullptr)
+        return INT_MAX;
+
+    int min = this->value;
+    int lMin = left->min();
+    int rMin = right->min();
+
+    if (lMin < min)
+        min = lMin;
+    if (rMin < min)
+        min = rMin;
+
+    return min;
 }

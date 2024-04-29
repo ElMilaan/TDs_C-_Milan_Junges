@@ -8,137 +8,136 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-     int choice{};
+     /* ====================== CONSTRUCTION DE L'ARBRE ===================== */
 
-     cout << "CHOISISSEZ L'ACTION A EFFECTUER : " << endl
-          << endl
-          << "0 - Quitter le programme" << endl
-          << "1 - Afficher les arbres" << endl
-          << "2 - Afficher les feuilles des arbres" << endl
-          << "3 - Calculer la hauteur de l'arbre" << endl
-          << "4 - Supprimer un enfant à l'arbre" << endl
-          << "5 - Parcourir l'arbre dans l'ordre infixe" << endl
-          << "6 - Parcourir l'arbre dans l'ordre prefixe" << endl
-          << "7 - Parcourir l'arbre dans l'ordre postfixe" << endl
-          << "8 - Retourner une reference vers le pointeur du noeud le plus a gauche de l'arbre" << endl
-          << "9 - Supprimer un noeud dont on choisit la valeur" << endl
-          << "10 - Supprimer un arbre entier" << endl
-          << "11 - Affichage du minimum et du maximum de l'arbre" << endl
-          << endl
-          << "> ";
+     Node *a{create_node(5)};
+     a->insert(3);
+     a->insert(7);
+     a->insert(2);
+     a->insert(4);
+     a->insert(6);
+     a->insert(8);
+     a->insert(1);
+     a->insert(9);
+     a->insert(0);
 
-     cin >> choice;
-     cout << endl;
-
-     /* ====================== CONSTRUCTION DE DEUX ARBRES ===================== */
-
-     Node *a{create_node(20)};
-     a->insert(40);
-     a->insert(10);
-     a->left->insert(15);
-     a->left->insert(5);
-     a->right->insert(50);
-     a->right->insert(30);
-     a->right->right->insert(36);
-
-     Node *b{create_node(5)};
-     b->insert(2);
-     b->insert(10);
-     b->left->insert(20);
-
-     // remove(a, 5);
-     // cout << "Arbre 1 apres suppression : " << endl
-     //      << endl;
-     // pretty_print_left_right(*a);
+     int value_to_remove{40}; // pour tester la suppression d'une valeur de l'arbre dans le cas 9
 
      /* ======================================================================== */
 
-     switch (choice)
+     int choice{};
+     bool stop{0};
+
+     while (!stop)
      {
-     case 1:
-          cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(*a);
-
-          cout << endl
-               << "Arbre 2 : " << endl;
-          pretty_print_left_right(*b);
-          break;
-
-     case 2:
-          cout << "Feuilles de l'arbre 1 : ";
-          a->leaves();
-          cout << endl;
-          cout << "Feuilles de l'arbre 2 : ";
-          b->leaves();
-          cout << endl;
-          break;
-
-     case 3:
-          cout << "Hauteur de l'arbre 1 : " << a->height() << endl;
-          cout << "Hauteur de l'arbre 2 : " << b->height() << endl;
-          break;
-
-     case 4:
-          cout << "Arbre 2 avant suppression : " << endl
-               << endl;
-          pretty_print_left_right(*b);
-          b->delete_childs();
-          cout << endl
-               << "Arbre 2 apres suppression : " << endl
-               << endl;
-          pretty_print_left_right(*b);
-          break;
-
-     case 5:
-          cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(*a);
-          cout << endl
-               << "Parcours infixe de l'arbre 1 : ";
-          a->display_infixe();
-          break;
-
-     case 6:
-          cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(*a);
-          cout << endl
-               << "Parcours prefixe de l'arbre 1 : " << a->prefixe();
-          break;
-
-     case 7:
-          cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(*a);
-          cout << endl
-               << "Parcours postfixe (recursif) de l'arbre 1 : " << a->postfixe();
-          break;
-
-     case 8:
-          cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(*a);
-          cout << endl
-               << "Valeur du noeud le plus a gauche : " << most_left(a)->value;
-          break;
-
-     case 9:
-          cout << "Arbre 1 : " << endl;
-          pretty_print_left_right(*a);
-          int value_to_delete{};
-          cout << endl
-               << "Choisissez une valeur a supprimer de l'arbre : " << endl
+          cout << "CHOISISSEZ L'ACTION A EFFECTUER : " << endl
+               << endl
+               << "0 - Quitter le programme" << endl
+               << "1 - Afficher les arbres" << endl
+               << "2 - Afficher les feuilles des arbres" << endl
+               << "3 - Calculer la hauteur de l'arbre" << endl
+               << "4 - Supprimer un enfant à l'arbre" << endl
+               << "5 - Parcourir l'arbre dans l'ordre infixe" << endl
+               << "6 - Parcourir l'arbre dans l'ordre prefixe" << endl
+               << "7 - Parcourir l'arbre dans l'ordre postfixe" << endl
+               << "8 - Retourner une reference vers le pointeur du noeud le plus a gauche de l'arbre" << endl
+               << "9 - Supprimer un noeud dont on choisit la valeur" << endl
+               << "10 - Supprimer un arbre entier" << endl
+               << "11 - Affichage du minimum et du maximum de l'arbre" << endl
+               << endl
                << "> ";
-          cin >> value_to_delete;
-          bool success = remove(a, value_to_delete);
-          cout << endl
-               << success << "Arbre 1 apres suppression : " << endl
-               << endl;
-          pretty_print_left_right(*a);
 
-          // case 10:
-          //      break;
+          cin >> choice;
+          cout << endl;
 
-          // case 11:
-          //      break;
-          // }
+          switch (choice)
+          {
+          case 0:
+               stop = !stop;
+               break;
 
-          // cout << endl;
+          case 1:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               break;
+
+          case 2:
+               cout << "Feuilles de l'arbre : ";
+               a->leaves();
+               cout << endl;
+               break;
+
+          case 3:
+               cout << "Hauteur de l'arbre : " << a->height() << endl;
+               break;
+
+          case 4:
+               cout << "Arbre avant suppression : " << endl
+                    << endl;
+               pretty_print_left_right(*a);
+               a->delete_childs();
+               cout << endl
+                    << "Arbre apres suppression : " << endl
+                    << endl;
+               pretty_print_left_right(*a);
+               break;
+
+          case 5:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               cout << endl
+                    << "Parcours infixe de l'arbre : ";
+               a->display_infixe();
+               break;
+
+          case 6:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               cout << endl
+                    << "Parcours prefixe de l'arbre : " << a->prefixe();
+               break;
+
+          case 7:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               cout << endl
+                    << "Parcours postfixe (recursif) de l'arbre : " << a->postfixe();
+               break;
+
+          case 8:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               cout << endl
+                    << "Valeur du noeud le plus a gauche : " << most_left(a)->value;
+               break;
+
+          case 9:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               remove(a, value_to_remove);
+               cout << endl
+                    << "Arbre apres suppression de la valeur " << value_to_remove << " : " << endl
+                    << endl;
+               pretty_print_left_right(*a);
+               break;
+
+          case 10:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               cout << endl
+                    << "Suppression de l'arbre entier : " << endl;
+               delete_tree(a);
+               pretty_print_left_right(*a);
+               break;
+
+          case 11:
+               cout << "Arbre : " << endl;
+               pretty_print_left_right(*a);
+               cout << endl
+                    << "Valeur max de l'arbre = " << a->max();
+               cout << endl
+                    << "Valeur min de l'arbre = " << a->min();
+               break;
+          }
      }
 }

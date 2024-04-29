@@ -11,15 +11,23 @@ struct Node
 
     bool is_leaf() const;
     void leaves() const;
-    void insert(int value);
+
+    void insert(int val);
+
     int height() const;
+
     void delete_childs();
+
     void display_infixe();
     void prefixe(vector<int> &vec);
     vector<int> prefixe();
     void postfixe(vector<int> &vec);
     vector<int> postfixe();
+
     int has_one_child(); // return 0 si n'a pas un seul enfant, 1 s'il n'a qu'un fils gauche, 2 s'il n'a qu'un fils droit
+
+    int max();
+    int min();
 };
 
 // EXERCICE 1
@@ -34,3 +42,5 @@ void remove_with_two_children(Node *&node, int &smallest);
 void remove_with_one_children(Node *&node);
 bool remove(Node *&node, int value);
 bool remove(Node *&node);
+
+void delete_tree(Node *node);
