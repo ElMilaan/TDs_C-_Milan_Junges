@@ -21,7 +21,7 @@ int main(int argc, char **argv)
      a->insert(9);
      a->insert(0);
 
-     int value_to_remove{40}; // pour tester la suppression d'une valeur de l'arbre dans le cas 9
+     int value_to_remove{7}; // pour tester la suppression d'une valeur de l'arbre dans le cas 9
 
      /* ======================================================================== */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
                << "1 - Afficher les arbres" << endl
                << "2 - Afficher les feuilles des arbres" << endl
                << "3 - Calculer la hauteur de l'arbre" << endl
-               << "4 - Supprimer un enfant à l'arbre" << endl
+               << "4 - Supprimer un enfant de l'arbre" << endl
                << "5 - Parcourir l'arbre dans l'ordre infixe" << endl
                << "6 - Parcourir l'arbre dans l'ordre prefixe" << endl
                << "7 - Parcourir l'arbre dans l'ordre postfixe" << endl
