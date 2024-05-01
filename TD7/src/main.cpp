@@ -11,7 +11,9 @@ int main(int argc, char **argv)
 {
     // CREATION DU GRAPH 1 AVEC LA FONCTION BUILD
     vector<vector<float>> adj_mat{
-        {0, 1, 1}, {1, 0, 1}, {1, 1, 0}};
+        {0, 1, 1},
+        {1, 0, 1},
+        {1, 1, 0}};
 
     Graph::WeightedGraph graph1{Graph::build_from_adjacency_matrix(adj_mat)};
 

@@ -30,9 +30,3 @@ ostream &operator<<(ostream &os, const vector<vector<float>> adj_mat)
     }
     return os;
 }
-
-ostream &operator<<(ostream &os, const bool b)
-{
-    (b) ? os << "true" : os << "false";
-    return os;
-}
