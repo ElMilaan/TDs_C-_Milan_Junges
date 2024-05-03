@@ -29,12 +29,12 @@ namespace Graph
         return !(*this == other);
     }
 
-    bool WeightedGraph::exists(char const id)
+    bool WeightedGraph::exists(int const id)
     {
         return adjacency_list.find(id) != adjacency_list.end();
     }
 
-    void WeightedGraph::add_vertex(char const id)
+    void WeightedGraph::add_vertex(int const id)
     {
         if (!exists(id))
         {
@@ -42,7 +42,7 @@ namespace Graph
         }
     }
 
-    void WeightedGraph::add_directed_edge(char const from, char const to, float const weight)
+    void WeightedGraph::add_directed_edge(int const from, int const to, float const weight)
     {
         if (!exists(to))
         {
@@ -51,7 +51,7 @@ namespace Graph
         adjacency_list.at(from).push_back({to, weight});
     }
 
-    void WeightedGraph::add_undirected_edge(char const from, char const to, float const weight)
+    void WeightedGraph::add_undirected_edge(int const from, int const to, float const weight)
     {
         add_directed_edge(from, to, weight);
         add_directed_edge(to, from, weight);
@@ -74,10 +74,10 @@ namespace Graph
         return graph;
     }
 
-    void WeightedGraph::print_DFS(char const start) const
+    void WeightedGraph::print_DFS(int const start) const
     {
-        stack<char> stk{};
-        vector<char> vertexAlreadyPrint{start};
+        stack<int> stk{};
+        vector<int> vertexAlreadyPrint{start};
         stk.push(start);
         int sum{0};
         while (!stk.empty())
@@ -99,15 +99,14 @@ namespace Graph
             }
         }
     }
-
-    void WeightedGraph::print_BFS(char const start) const
+    void WeightedGraph::print_BFS(int const start) const
     {
-        queue<char> q{};
-        vector<char> vertexAlreadyPrint{start};
+        queue<int> q{};
+        vector<int> vertexAlreadyPrint{start};
         q.push(start);
         while (!q.empty())
         {
-            char current{q.front()};
+            int current{q.front()};
             cout << current << " ";
             q.pop();
             if (adjacency_list.find(current) != adjacency_list.end())
@@ -125,14 +124,14 @@ namespace Graph
         }
     }
 
-    void WeightedGraph::BFS(char const start, function<void(char const)> callback) const
+    void WeightedGraph::BFS(int const start, function<void(int const)> callback) const
     {
-        queue<char> q{};
-        vector<char> vertexAlreadyPrint{start};
+        queue<int> q{};
+        vector<int> vertexAlreadyPrint{start};
         q.push(start);
         while (!q.empty())
         {
-            char current{q.front()};
+            int current{q.front()};
             callback(current);
             q.pop();
             if (adjacency_list.find(current) != adjacency_list.end())
@@ -150,14 +149,14 @@ namespace Graph
         }
     }
 
-    unordered_map<char, pair<float, char>> WeightedGraph::dijkstra(char const &start, char const &end)
+    unordered_map<int, pair<float, int>> WeightedGraph::dijkstra(int const &start, int const &end)
     {
-        unordered_map<char, pair<float, char>> tab{};
+        unordered_map<int, pair<float, int>> tab{};
         tab.insert({start, {0, 1}});
         // On définit la priorité comme décroissante pour avoir le plus petit élément retourné par .top()
-        priority_queue<char, std::vector<char>, std::greater<char>> toVisit{};
+        priority_queue<int, std::vector<int>, std::greater<int>> toVisit{};
         toVisit.push(start);
-        char current{-1};
+        int current{-1};
         while (!toVisit.empty() && current != end)
         {
             current = toVisit.top();

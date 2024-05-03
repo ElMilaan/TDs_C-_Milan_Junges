@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 
      cout << endl
           << "Sommets du graph 1 a partir de 1 (BFS + callback) : ";
-     graph1.BFS(1, [](char const node_id)
+     graph1.BFS(1, [](int const node_id)
                 { std::cout << node_id << " "; });
 
      cout << endl
