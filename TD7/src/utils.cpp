@@ -12,8 +12,26 @@ ostream &operator<<(ostream &os, const Graph::WeightedGraph graph)
     {
         for (Graph::WeightedGraphEdge wge : p.second)
         {
-            os << p.first << " -> " << wge.to << " ( " << wge.weight << " )" << endl;
+            os << p.first << " -- " << wge.weight << " -> " << wge.to << endl;
         }
+    }
+    return os;
+}
+
+ostream &operator<<(ostream &os, const unordered_map<int, pair<float, int>> map)
+{
+    for (pair p : map)
+    {
+        os << p.first << " (" << p.second.first << "," << p.second.second << ")" << endl;
+    }
+    return os;
+}
+
+ostream &operator<<(ostream &os, const unordered_map<char, pair<float, char>> map)
+{
+    for (pair p : map)
+    {
+        os << p.first << " (" << p.second.first << "," << p.second.second << ")" << endl;
     }
     return os;
 }
@@ -29,4 +47,16 @@ ostream &operator<<(ostream &os, const vector<vector<float>> adj_mat)
         }
     }
     return os;
+}
+
+bool isIn(const std::vector<char> &vec, char val)
+{
+    for (char e : vec)
+    {
+        if (e == val)
+        {
+            return true;
+        }
+    }
+    return false;
 }
