@@ -42,5 +42,6 @@ namespace Graph
         std::unordered_map<int, std::pair<float, int>> dijkstra(int const &start, int const &end);
     };
     WeightedGraph build_from_adjacency_matrix(std::vector<std::vector<float>> const &adjacency_matrix);
+    void display_shortest_path(std::unordered_map<int, std::pair<float, int>> tab, int start, int end);
 
 } // namespace

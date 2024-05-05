@@ -66,6 +66,10 @@ int main(int argc, char **argv)
      cout << endl
           << endl
           << "Dijkstra avec le graph 1 : " << endl;
-     auto result{graph1.dijkstra(1, 5)};
+     auto result{graph1.dijkstra(1, 6)};
      cout << result;
+
+     cout << endl
+          << "Le plus court chemin est : ";
+     Graph::display_shortest_path(result, 1, 6);
 }

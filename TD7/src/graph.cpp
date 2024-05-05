@@ -184,4 +184,31 @@ namespace Graph
         return tab;
     }
 
+    void display_shortest_path(std::unordered_map<int, std::pair<float, int>> tab, int start, int end)
+    {
+        int currentVertex{end};
+        vector<int> vertexes{start};
+
+        while (currentVertex != start)
+        {
+            if (currentVertex != end)
+            {
+                vertexes.push_back(currentVertex);
+            }
+            currentVertex = tab.at(currentVertex).second;
+        }
+        vertexes.push_back(end);
+
+        for (int v : vertexes)
+        {
+            cout << "|" << v << "|";
+            if (v != end)
+            {
+                cout << " -> ";
+            }
+        }
+
+        cout << " (Ponderation totale = " << tab.at(end).first << ")";
+    }
+
 }
