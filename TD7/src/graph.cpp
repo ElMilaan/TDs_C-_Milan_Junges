@@ -198,6 +198,7 @@ namespace Graph
             currentVertex = tab.at(currentVertex).second;
         }
         vertexes.push_back(end);
+        sort(vertexes.begin(), vertexes.end());
 
         for (int v : vertexes)
         {
